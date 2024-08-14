@@ -10,3 +10,8 @@ int main() {
   }
   return 0;
 }
+/* Ele faz direto da tabuada do 1 ao 5
+ * O primeiro loop FOR serve para passar do 1 ao 5...
+ * O segundo loop FOR serve para ir multiplicando do 1 ao 10
+ * Depois finalmente executando a multiplicação na função printf
+ */
