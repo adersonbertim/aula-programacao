@@ -1,0 +1,22 @@
+html {
+  font-size: 20px;
+  font-family: "Playwrite Deutschland Grundschrift", sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #34ff3f, #00fdba);
+  border-radius: 9px;
+  box-shadow: -1 4px 6px rgba(0, 0, 0, 0.1);
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  color: rgb(255, 255, 255);
+  font-size: 60px;
+  text-align: center;
+  border: 0;
+  padding: 20px 0;
+  text-shadow: 3px 3px 1px black;
+}
