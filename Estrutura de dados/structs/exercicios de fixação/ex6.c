@@ -68,8 +68,9 @@ int main() {
 
     // ------ Sexo
     printf("Digite a letra de seu sexo minusculo: f ou m \n");
-    scanf("%c", &pessoas[i].sexo);
-    getchar();
+    char sexTemp[3];
+    fgets(sexTemp, sizeof(sexTemp), stdin);
+    pessoas[i].sexo = sexTemp[0];
   }
 
   printf("Busca pelo cpf: ");
