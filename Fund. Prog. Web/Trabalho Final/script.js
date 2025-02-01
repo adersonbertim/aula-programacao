@@ -37,10 +37,15 @@ document.getElementById('gradeForm').addEventListener('submit', function(event) 
 
     // Determinar o status do aluno
     let status;
+    let additionalInfo = '';
+
     if (weightedAverage >= 7) {
         status = 'Aprovado';
-    } else if (weightedAverage >= 4) {
-        status = 'Exame';
+    } else if (weightedAverage >= 1.7) {
+        status = 'Apto para Exame';
+        // Calcular a nota necessária no exame para passar
+        const requiredExamGrade = (14 - weightedAverage).toFixed(2);
+        additionalInfo = `Você precisa de ${requiredExamGrade} no exame para ser aprovado.`;
     } else {
         status = 'Reprovado';
     }
@@ -48,6 +53,7 @@ document.getElementById('gradeForm').addEventListener('submit', function(event) 
     // Exibir o resultado
     document.getElementById('result').innerHTML = `
         Média: ${weightedAverage.toFixed(2)}<br>
-        Status: ${status}
+        Status: ${status}<br>
+        ${additionalInfo}
     `;
 });
