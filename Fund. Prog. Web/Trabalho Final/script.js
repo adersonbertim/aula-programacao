@@ -22,17 +22,17 @@ document.getElementById('gradeForm').addEventListener('submit', function(event) 
         weight: weights[index]
     })).filter(item => !isNaN(item.grade) && !isNaN(item.weight) && item.weight > 0);
 
-    // Calcular a soma dos pesos fornecidos
-    const totalWeight = validGradesAndWeights.reduce((sum, item) => sum + item.weight, 0);
-
-    // Verificar se a soma dos pesos fornecidos é 10
-    if (totalWeight !== 10) {
-        alert('A soma dos pesos fornecidos deve ser igual a 10.');
+    // Verificar se pelo menos uma nota e peso foram fornecidos
+    if (validGradesAndWeights.length === 0) {
+        alert('Por favor, insira pelo menos uma nota e um peso.');
         return;
     }
 
-    // Calcular a média ponderada
+    // Calcular a soma dos pesos e a soma ponderada das notas
+    const totalWeight = validGradesAndWeights.reduce((sum, item) => sum + item.weight, 0);
     const weightedSum = validGradesAndWeights.reduce((sum, item) => sum + item.grade * item.weight, 0);
+
+    // Calcular a média ponderada
     const weightedAverage = weightedSum / totalWeight;
 
     // Determinar o status do aluno
