@@ -1,36 +1,36 @@
 document.getElementById('gradeForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // Coletar notas e pesos
-    const grades = [
-        parseFloat(document.getElementById('grade1').value),
-        parseFloat(document.getElementById('grade2').value),
-        parseFloat(document.getElementById('grade3').value),
-        parseFloat(document.getElementById('grade4').value)
-    ];
+    // Arrays para armazenar notas e pesos
+    const grades = [];
+    const weights = [];
 
-    const weights = [
-        parseFloat(document.getElementById('weight1').value),
-        parseFloat(document.getElementById('weight2').value),
-        parseFloat(document.getElementById('weight3').value),
-        parseFloat(document.getElementById('weight4').value)
-    ];
+    // Coletar notas e pesos dos campos
+    for (let i = 1; i <= 4; i++) {
+        const grade = parseFloat(document.getElementById(`grade${i}`).value);
+        const weight = parseFloat(document.getElementById(`weight${i}`).value);
 
-    // Filtrar apenas as notas e pesos que foram fornecidos
-    const validGradesAndWeights = grades.map((grade, index) => ({
-        grade: grade,
-        weight: weights[index]
-    })).filter(item => !isNaN(item.grade) && !isNaN(item.weight) && item.weight > 0);
+        // Verificar se a nota e o peso são válidos
+        if (!isNaN(grade) && !isNaN(weight) && weight > 0) {
+            grades.push(grade);
+            weights.push(weight);
+        }
+    }
 
     // Verificar se pelo menos uma nota e peso foram fornecidos
-    if (validGradesAndWeights.length === 0) {
+    if (grades.length === 0) {
         alert('Por favor, insira pelo menos uma nota e um peso.');
         return;
     }
 
     // Calcular a soma dos pesos e a soma ponderada das notas
-    const totalWeight = validGradesAndWeights.reduce((sum, item) => sum + item.weight, 0);
-    const weightedSum = validGradesAndWeights.reduce((sum, item) => sum + item.grade * item.weight, 0);
+    let totalWeight = 0;
+    let weightedSum = 0;
+
+    for (let i = 0; i < grades.length; i++) {
+        totalWeight += weights[i];
+        weightedSum += grades[i] * weights[i];
+    }
 
     // Calcular a média ponderada
     const weightedAverage = weightedSum / totalWeight;
